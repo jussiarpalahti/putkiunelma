@@ -11,27 +11,22 @@ pool:
 
 steps:
 
-- task: DockerInstaller@0
-  inputs:
-    dockerVersion: '17.09.0-ce'
+  - task: DockerInstaller@0
+    inputs:
+      dockerVersion: '17.09.0-ce'
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'azurereg'
-    repository: 'test'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: |
-      master
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'azurereg'
+      repository: 'test'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      tags: |
+        master
+  - script: printenv
 
-- task: KubectlInstaller@0
-  inputs:
-    kubectlVersion: 'latest'
 
-# - task: KubernetesManifest@0
+# - task: KubectlInstaller@0
 #   inputs:
-#     action: 'deploy'
-#     kubernetesServiceConnection: 'kubekonn'
-#     namespace: 'test'
-#     manifests: 'eka'
-#     containers: 'devhel.azurecr.io/test:master'
+#     kubectlVersion: 'latest'
+
