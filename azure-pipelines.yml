@@ -23,10 +23,20 @@ steps:
       Dockerfile: '**/Dockerfile'
       tags: |
         master
+        '$(Build.SourceVersion)'
   - script: printenv
 
+  - task: KubectlInstaller@0
+    inputs:
+      kubectlVersion: 'latest'
 
-# - task: KubectlInstaller@0
-#   inputs:
-#     kubectlVersion: 'latest'
-
+  - task: Kubernetes@1
+    inputs:
+      connectionType: 'Kubernetes Service Connection'
+      kubernetesServiceEndpoint: 'kubekonn'
+      command: 'set'
+      useConfigurationFile: true
+      configurationType: 'inline'
+      inline: 'image deployment testdep testdep=devhel.azurecr.io/test:$(Build.SourceVersion)'
+      secretType: 'dockerRegistry'
+      containerRegistryType: 'Azure Container Registry'
