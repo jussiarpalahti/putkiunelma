@@ -15,7 +15,13 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        which mono
+        env
+        COMMIT=$(echo $BUILD_SOURCEVERSION | cut -c1-7)
+        echo "This is the commit short form $COMMIT"
+        env
+        
+        # create pipeline variables
+        echo "##vso[task.setvariable variable=commit]$commit"
   
   - task: GitVersion@5
     inputs:
@@ -35,7 +41,7 @@ steps:
       Dockerfile: '**/Dockerfile'
       tags: |
         master
-        '$(Build.SourceVersion)'
+        '$(commit)'
   - script: printenv
 
   - task: KubectlInstaller@0
