@@ -15,8 +15,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        sudo apt update
-        sudo apt install mono-complete
+        which mono
   
   - task: GitVersion@5
     inputs:
