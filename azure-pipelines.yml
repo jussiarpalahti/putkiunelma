@@ -23,10 +23,6 @@ steps:
         # create pipeline variables
         echo "##vso[task.setvariable variable=commit]$commit"
   
-  - task: GitVersion@5
-    inputs:
-      runtime: 'full'
-  
   - script: printenv
 
   - task: DockerInstaller@0
