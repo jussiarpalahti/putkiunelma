@@ -11,6 +11,12 @@ pool:
 
 steps:
 
+  - task: GitVersion@5
+    inputs:
+      runtime: 'full'
+  
+  - script: printenv
+
   - task: DockerInstaller@0
     inputs:
       dockerVersion: '17.09.0-ce'
