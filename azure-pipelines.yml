@@ -11,6 +11,11 @@ pool:
 
 steps:
 
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '2.x'
+
   - task: GitVersion@5
     inputs:
       runtime: 'full'
