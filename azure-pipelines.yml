@@ -37,7 +37,7 @@ steps:
       Dockerfile: '**/Dockerfile'
       tags: |
         master
-        '$(commit)'
+        $(commit)
   - script: printenv
 
   - task: KubectlInstaller@0
