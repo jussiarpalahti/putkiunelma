@@ -11,11 +11,13 @@ pool:
 
 steps:
 
-  - task: UseDotNet@2
+  - task: Bash@3
     inputs:
-      packageType: 'sdk'
-      version: '2.x'
-
+      targetType: 'inline'
+      script: |
+        apt update
+        apt install mono-complete
+  
   - task: GitVersion@5
     inputs:
       runtime: 'full'
