@@ -51,6 +51,6 @@ steps:
       command: 'set'
       useConfigurationFile: true
       configurationType: 'inline'
-      inline: 'image deployment testdep testdep=devhel.azurecr.io/test:$(tag)'
+      inline: 'image deployment testdep testdep=devhel.azurecr.io/test:$(commit)'
       secretType: 'dockerRegistry'
       containerRegistryType: 'Azure Container Registry'
